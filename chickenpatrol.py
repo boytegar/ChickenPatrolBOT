@@ -102,3 +102,13 @@ class ChickenPatrol:
             data = jsons.get('data')
             print_(f"Buy Done : Rank {data.get('rank')}")
             return jsons
+    
+    def clear_task(self, token, title):
+        url = f'https://api.chickenpatrol.xyz/app/task/{title}'
+        headers = {
+            **self.header,
+            'Authorization': f"Bearer {token}"
+        }
+        response = self.make_request('get', url=url, headers=headers)
+        if response is not None:
+            print_(f"Task {title} done")

@@ -62,7 +62,7 @@ def main():
     # auto_game = input("auto play game  y/n  : ").strip().lower()
     while True:
         start_time = time.time()
-        delay = 6*3700
+        delay = 5*3651
         clear_terminal()
         queries = load_query()
         sum = len(queries)
@@ -71,7 +71,6 @@ def main():
             users = parse_query(query).get('user')
             print_(f"[SxG]======== Account {index}/{sum} | {users.get('username','')} ========[SxG]")
             data_auth = chicken.auth(query)
-            print(data_auth)
             if data_auth is not None:
                 token = data_auth.get('access_token')
             
@@ -94,6 +93,22 @@ def main():
                         usdt = data_tap.get('usdt')
                         airdrop = data_tap.get('airdrop')
                         print_(f"Tap : {usdt} USDT | {airdrop} TCN")
+                    
+                    task = data_user.get('task')
+                    taskOne = task.get('taskOne')
+                    if not taskOne:
+                        chicken.clear_task(token, 'joinchannel')
+                    taskTwo = task.get('taskTwo')
+                    if not taskTwo:
+                        chicken.clear_task(token, 'joinchat')
+                    taskThree = task.get('taskThree')
+                    if not taskThree:
+                        chicken.clear_task(token, 'followx')
+                    taskFour = task.get('taskFour')
+                    taskFive = task.get('taskFive')
+                    if not taskFive:
+                        chicken.clear_task(token, 'followxbinance')
+                    taskSix = task.get('taskSix')
 
         
         end_time = time.time()
