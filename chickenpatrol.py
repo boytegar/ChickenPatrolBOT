@@ -42,7 +42,6 @@ class ChickenPatrol:
                 response = requests.put(url, headers=headers, json=json, data=data)
             else:
                 raise ValueError("Invalid method.")
-            print(response.text)
             if response.status_code >= 500:
                 if retry_count >= 4:
                     print_(f"Status Code: {response.status_code} | {response.text}")
